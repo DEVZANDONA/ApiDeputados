@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737256037045",
+    "project_id": "trabalho-camara-deputados",
+    "storage_bucket": "trabalho-camara-deputados.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737256037045:android:482990cab442c6333afcfc",
+        "android_client_info": {
+          "package_name": "com.tcc.trab_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYQVKhKh9TvQ231JTupL02beg2R46vjfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
