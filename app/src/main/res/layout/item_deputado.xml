@@ -17,7 +17,6 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/fotoImageView"
-            android:src="@drawable/ic_partidos"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -41,7 +40,7 @@
             android:layout_marginStart="45dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/nomeTextView"
-            android:text="Dosagem"
+            android:text="UF"
             android:textAlignment="center"
             android:textColor="@color/azul2"
             android:textSize="16sp" />

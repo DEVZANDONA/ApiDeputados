@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lavender"
-    tools:context=".Auth.Auth.System_UI.HomePage">
+    tools:context=".Auth.Auth.System_UI.DeputadoList">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,10 +15,10 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewDeputados"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+            android:scrollbars="vertical"/>
     </FrameLayout>
 
 
@@ -39,7 +39,7 @@
             app:labelVisibilityMode="labeled"
             android:background="@android:color/transparent"
             app:itemBackground="@android:color/transparent"
-        app:menu="@menu/bottom_menu"/>
+            app:menu="@menu/bottom_menu"/>
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

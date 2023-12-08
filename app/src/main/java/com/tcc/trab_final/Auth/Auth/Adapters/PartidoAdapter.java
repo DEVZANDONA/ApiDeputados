@@ -59,8 +59,8 @@ public class PartidoAdapter extends RecyclerView.Adapter<PartidoAdapter.PartidoV
 
         public PartidoViewHolder(@NonNull View itemView) {
             super(itemView);
-            textNome = itemView.findViewById(R.id.text_nome_partido);
-            textSigla = itemView.findViewById(R.id.text_sigla_partido);
+            textNome = itemView.findViewById(R.id.nomeTextView);
+            textSigla = itemView.findViewById(R.id.partidoUfTextView);
         }
     }
 }
