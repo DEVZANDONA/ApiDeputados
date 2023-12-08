@@ -64,7 +64,7 @@ public class DeputadoAdapter extends RecyclerView.Adapter<DeputadoAdapter.Deputa
         }
 
         void bind(final Deputado deputado, final OnItemClickListener listener) {
-            Picasso.get().load(deputado.getUrlFotoCompleta()).into(fotoImageView);
+            Picasso.get().load(deputado.getUrlFoto()).into(fotoImageView);
             nomeTextView.setText(deputado.getNome());
             partidoUfTextView.setText(deputado.getSiglaPartido() + " - " + deputado.getSiglaUf());
 

@@ -139,37 +139,6 @@ public class ProfilePartido extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_menu, menu);
-        return true;
-    }
-
-    private static final int SAIR_ID = 1;
-    private static final int DEPUTADOS_ID = 2;
-    private static final int PARTIDOS_ID = 3;
-    private static final int CONFIG_ID = 4;
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-
-        if (itemId == R.id.sair) {
-            // Lógica quando o item "Sair" for selecionado
-            return true;
-        } else if (itemId == R.id.deputados) {
-            startActivity(new Intent(this, DeputadoList.class));
-            return true;
-        } else if (itemId == R.id.partidos) {
-            startActivity(new Intent(this, HomePage.class));
-            return true;
-        } else if (itemId == R.id.config) {
-            // Lógica quando o item "Configurações" for selecionado
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 }
 

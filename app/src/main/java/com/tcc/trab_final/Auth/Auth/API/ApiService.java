@@ -16,4 +16,8 @@ public interface ApiService {
 
     @GET("deputados")
     Call<ResponseBody> obterDeputados();
+
+    @GET("deputados/{id}")
+    Call<ResponseBody> getDeputadoDetails(@Path("id") int deputadoId);
+
 }

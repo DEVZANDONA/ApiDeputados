@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.tcc.trab_final.Auth.Auth.API.ApiResult;
 import com.tcc.trab_final.Auth.Auth.API.ApiService;
 import com.tcc.trab_final.Auth.Auth.API.RetrofitClient;
@@ -35,6 +36,7 @@ public class HomePage extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private PartidoAdapter partidoAdapter;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,16 @@ public class HomePage extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         fetchData();
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return handleNavigationItemSelected(item);
+            }
+        });
     }
 
     private void fetchData() {
@@ -77,31 +87,30 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-            private List<Partido> parseJson(String jsonString) {
-                List<Partido> partidos = new ArrayList<>();
+    private List<Partido> parseJson(String jsonString) {
+        List<Partido> partidos = new ArrayList<>();
 
-                try {
-                    JSONObject json = new JSONObject(jsonString);
-                    JSONArray dadosArray = json.getJSONArray("dados");
+        try {
+            JSONObject json = new JSONObject(jsonString);
+            JSONArray dadosArray = json.getJSONArray("dados");
 
-                    for (int i = 0; i < dadosArray.length(); i++) {
-                        JSONObject partidoJson = dadosArray.getJSONObject(i);
+            for (int i = 0; i < dadosArray.length(); i++) {
+                JSONObject partidoJson = dadosArray.getJSONObject(i);
 
-                        int id = partidoJson.getInt("id");
-                        String sigla = partidoJson.getString("sigla");
-                        String nome = partidoJson.getString("nome");
-                        String uri = partidoJson.getString("uri");
+                int id = partidoJson.getInt("id");
+                String sigla = partidoJson.getString("sigla");
+                String nome = partidoJson.getString("nome");
+                String uri = partidoJson.getString("uri");
 
-                        Partido partido = new Partido(id, sigla, nome, uri);
-                        partidos.add(partido);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                return partidos;
+                Partido partido = new Partido(id, sigla, nome, uri);
+                partidos.add(partido);
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        return partidos;
+    }
 
     private void setupRecyclerView(List<Partido> partidos) {
         partidoAdapter = new PartidoAdapter(partidos, new PartidoAdapter.OnItemClickListener() {
@@ -109,7 +118,7 @@ public class HomePage extends AppCompatActivity {
             public void onItemClick(Partido partido) {
                 Intent intent = new Intent(HomePage.this, ProfilePartido.class);
                 intent.putExtra("PARTIDO_ID", partido.getId());
-                Log.d("RecyclerView", "ID do Partido clicado: " + partido.getId()); // Adicione este log
+                Log.d("RecyclerView", "ID do Partido clicado: " + partido.getId());
                 startActivity(intent);
             }
         });
@@ -135,19 +144,9 @@ public class HomePage extends AppCompatActivity {
         Log.e("API", "Erro de conexão", t);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_menu, menu);
-        return true;
-    }
 
-    private static final int SAIR_ID = 1;
-    private static final int DEPUTADOS_ID = 2;
-    private static final int PARTIDOS_ID = 3;
-    private static final int CONFIG_ID = 4;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    private boolean handleNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
         if (itemId == R.id.sair) {
@@ -156,15 +155,11 @@ public class HomePage extends AppCompatActivity {
         } else if (itemId == R.id.deputados) {
             startActivity(new Intent(this, DeputadoList.class));
             return true;
-        } else if (itemId == R.id.partidos) {
-            startActivity(new Intent(this, HomePage.class));
-            return true;
         } else if (itemId == R.id.config) {
             // Lógica quando o item "Configurações" for selecionado
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
-
 }

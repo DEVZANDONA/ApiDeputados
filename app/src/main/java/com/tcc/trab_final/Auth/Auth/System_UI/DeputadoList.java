@@ -60,14 +60,12 @@ public class DeputadoList extends AppCompatActivity {
                         String responseData = response.body().string();
                         Log.d("ApiResult", "Raw API Response: " + responseData);
 
-                        // Processar os dados JSON
-                        List<Deputado> deputados = parseJson(responseData);
 
-                        // Configurar o RecyclerView com os dados
+                        List<Deputado> deputados = parseJson(responseData);
                         setupRecyclerView(deputados);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        // Lidar com erros de leitura do corpo da resposta.
+
                     }
                 } else {
                     handleApiError(response);
@@ -118,12 +116,16 @@ public class DeputadoList extends AppCompatActivity {
         deputadoAdapter = new DeputadoAdapter(deputados, new DeputadoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Deputado deputado) {
-                // Implemente o que deseja fazer ao clicar em um item da lista
-                // Exemplo: abrir detalhes do deputado
-                Toast.makeText(DeputadoList.this, "Clicou em " + deputado.getNome(), Toast.LENGTH_SHORT).show();
+                abrirDetalhesDeputado(deputado.getId());
             }
         });
         recyclerView.setAdapter(deputadoAdapter);
+    }
+
+    private void abrirDetalhesDeputado(int deputadoId) {
+        Intent intent = new Intent(this, ProfileDeputado.class);
+        intent.putExtra("DEPUTADO_ID", deputadoId);
+        startActivity(intent);
     }
 
     private void handleApiError(Response<?> response) {
@@ -147,37 +149,6 @@ public class DeputadoList extends AppCompatActivity {
         // Toast removido
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_menu, menu);
-        return true;
-    }
-
-    private static final int SAIR_ID = 1;
-    private static final int DEPUTADOS_ID = 2;
-    private static final int PARTIDOS_ID = 3;
-    private static final int CONFIG_ID = 4;
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-
-        if (itemId == R.id.sair) {
-            // Lógica quando o item "Sair" for selecionado
-            return true;
-        } else if (itemId == R.id.deputados) {
-            startActivity(new Intent(this, DeputadoList.class));
-            return true;
-        } else if (itemId == R.id.partidos) {
-            startActivity(new Intent(this, HomePage.class));
-            return true;
-        } else if (itemId == R.id.config) {
-            // Lógica quando o item "Configurações" for selecionado
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 }
 

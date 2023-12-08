@@ -101,7 +101,4 @@ public class Deputado {
         this.email = email;
     }
 
-    public String getUrlFotoCompleta() {
-        return "https://www.camara.leg.br" + urlFoto;
-    }
 }

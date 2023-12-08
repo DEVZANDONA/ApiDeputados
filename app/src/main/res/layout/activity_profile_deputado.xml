@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Auth.Auth.System_UI.ProfilePartido">
+    tools:context=".Auth.Auth.System_UI.ProfileDeputado">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nomeLider"
+        android:id="@+id/nomeDeputado"
         android:layout_marginTop="14dp"
         android:text="Nome"
         android:textSize="24sp"
@@ -29,7 +29,7 @@
         app:cardElevation="8dp">
 
         <ImageView
-            android:id="@+id/detailImage"
+            android:id="@+id/imagemDeputado"
             android:layout_width="391dp"
             android:layout_height="231dp"
             android:layout_gravity="center"
@@ -38,10 +38,10 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/sigla_partido"
+        android:id="@+id/partido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sigla:"
+        android:text="Partido:"
         android:textColor="@color/lavender"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
@@ -53,7 +53,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Situacao:"
+        android:text="Email:"
         android:textColor="@color/lavender"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
@@ -66,12 +66,12 @@
         android:text=""
         android:layout_marginStart="10dp"
         android:textSize="16sp"
-        android:id="@+id/situacao"/>
+        android:id="@+id/email"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total de Membros:"
+        android:text="CPF:"
         android:textColor="@color/lavender"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
@@ -84,12 +84,12 @@
         android:text=""
         android:layout_marginStart="10dp"
         android:textSize="16sp"
-        android:id="@+id/numerosMembros"/>
+        android:id="@+id/cpf"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Número da Legislatura:"
+        android:text="Data de Nascimento:"
         android:textColor="@color/lavender"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
@@ -102,11 +102,11 @@
         android:text=""
         android:layout_marginStart="10dp"
         android:textSize="16sp"
-        android:id="@+id/numeroLesgislatura"/>
+        android:id="@+id/dataNascimento"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total de Posses:"
+        android:text="Condição Eleitoral:"
         android:textColor="@color/lavender"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
@@ -114,7 +114,7 @@
         android:textSize="18sp"/>
 
     <TextView
-        android:id="@+id/totalPosses"
+        android:id="@+id/condicaoEleitoral"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
