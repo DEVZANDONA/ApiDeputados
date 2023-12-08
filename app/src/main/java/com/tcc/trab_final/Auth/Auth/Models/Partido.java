@@ -1,12 +1,16 @@
 package com.tcc.trab_final.Auth.Auth.Models;
 
-public class Partido {
-    private int id;  // Alteração de String para int
+import com.tcc.trab_final.Auth.Auth.Models.Status;
+
+import java.io.Serializable;
+
+public class Partido implements Serializable {
+    private int id;
     private String sigla;
     private String nome;
     private String uri;
+    private Status status;
 
-    // Novo construtor
     public Partido(int id, String sigla, String nome, String uri) {
         this.id = id;
         this.sigla = sigla;
@@ -45,5 +49,12 @@ public class Partido {
     public void setUri(String uri) {
         this.uri = uri;
     }
-}
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+}

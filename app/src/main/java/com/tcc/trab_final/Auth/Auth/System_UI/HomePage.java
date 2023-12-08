@@ -1,5 +1,6 @@
 package com.tcc.trab_final.Auth.Auth.System_UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -55,14 +56,11 @@ public class HomePage extends AppCompatActivity {
                         String responseData = response.body().string();
                         Log.d("ApiResult", "Raw API Response: " + responseData);
 
-                        // Processar os dados JSON
                         List<Partido> partidos = parseJson(responseData);
 
-                        // Configurar o RecyclerView com os dados
                         setupRecyclerView(partidos);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        // Lidar com erros de leitura do corpo da resposta.
                     }
                 } else {
                     handleApiError(response);
@@ -76,7 +74,6 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-            // Método para processar os dados JSON
             private List<Partido> parseJson(String jsonString) {
                 List<Partido> partidos = new ArrayList<>();
 
@@ -87,19 +84,16 @@ public class HomePage extends AppCompatActivity {
                     for (int i = 0; i < dadosArray.length(); i++) {
                         JSONObject partidoJson = dadosArray.getJSONObject(i);
 
-                        // Extrair dados do partido
                         int id = partidoJson.getInt("id");
                         String sigla = partidoJson.getString("sigla");
                         String nome = partidoJson.getString("nome");
                         String uri = partidoJson.getString("uri");
 
-                        // Criar objeto Partido e adicioná-lo à lista
                         Partido partido = new Partido(id, sigla, nome, uri);
                         partidos.add(partido);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    // Lidar com erros de parsing JSON
                 }
 
                 return partidos;
@@ -107,7 +101,15 @@ public class HomePage extends AppCompatActivity {
 
 
     private void setupRecyclerView(List<Partido> partidos) {
-        partidoAdapter = new PartidoAdapter(partidos);
+        partidoAdapter = new PartidoAdapter(partidos, new PartidoAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Partido partido) {
+                Intent intent = new Intent(HomePage.this, ProfilePartido.class);
+                intent.putExtra("PARTIDO_ID", partido.getId());
+                Log.d("RecyclerView", "ID do Partido clicado: " + partido.getId()); // Adicione este log
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(partidoAdapter);
     }
 
@@ -124,11 +126,9 @@ public class HomePage extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // Toast removido
     }
 
     private void handleConnectionError(Throwable t) {
         Log.e("API", "Erro de conexão", t);
-        // Toast removido
     }
 }

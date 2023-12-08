@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Auth.Auth.System_UI.ProfilePartido">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nomeLider"
+        android:layout_marginTop="14dp"
+        android:text="Nome"
+        android:textSize="24sp"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="380dp"
+        android:layout_height="200dp"
+        android:id="@+id/cardImage"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <ImageView
+            android:id="@+id/detailImage"
+            android:layout_width="391dp"
+            android:layout_height="231dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/sigla_partido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sigla:"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Situacao:"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="time"
+        android:layout_marginStart="10dp"
+        android:textSize="16sp"
+        android:id="@+id/situacao"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total de Membros:"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginStart="10dp"
+        android:textSize="16sp"
+        android:id="@+id/numerosMembros"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número da Legislatura:"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginStart="10dp"
+        android:textSize="16sp"
+        android:id="@+id/numeroLesgislatura"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total de Posses:"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/totalPosses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text=""
+        android:textSize="16sp" />
+</LinearLayout>

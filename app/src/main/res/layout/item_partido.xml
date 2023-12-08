@@ -1,22 +1,49 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recCard"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/recImage"
+            android:src="@drawable/ic_partidos"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:id="@+id/text_nome_partido"
+            android:text="Name"
+            android:textColor="@color/azul2"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/recImage"/>
 
-    <TextView
-        android:id="@+id/text_nome_partido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"/>
-
-    <TextView
-        android:id="@+id/text_sigla_partido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/darker_gray"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/text_sigla_partido"
+            android:layout_width="122dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/text_nome_partido"
+            android:text="Dosagem"
+            android:textAlignment="center"
+            android:textColor="@color/azul2"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
