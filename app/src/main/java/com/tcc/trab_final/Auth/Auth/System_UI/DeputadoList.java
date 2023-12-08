@@ -12,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.tcc.trab_final.Auth.Auth.API.ApiResult;
 import com.tcc.trab_final.Auth.Auth.API.ApiService;
 import com.tcc.trab_final.Auth.Auth.API.RetrofitClient;
 import com.tcc.trab_final.Auth.Auth.Adapters.DeputadoAdapter;
+import com.tcc.trab_final.Auth.Auth.Auth.LoginActivity;
 import com.tcc.trab_final.Auth.Auth.Models.Deputado;
 import com.tcc.trab_final.R;
 
@@ -36,6 +38,7 @@ public class DeputadoList extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DeputadoAdapter deputadoAdapter;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,17 @@ public class DeputadoList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         fetchData();
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return handleNavigationItemSelected(item);
+            }
+        });
     }
+
 
     private void fetchData() {
         ApiService apiService = RetrofitClient.criarApiService();
@@ -149,6 +162,22 @@ public class DeputadoList extends AppCompatActivity {
         // Toast removido
     }
 
+
+    private boolean handleNavigationItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.sair) {
+            startActivity(new Intent(this, LoginActivity.class));
+            return true;
+        } else if (itemId == R.id.config) {
+            startActivity(new Intent(this, ConfigPage.class));
+            return true;
+        } else if (itemId == R.id.partidos) {
+            startActivity(new Intent(this, HomePage.class));
+        }
+
+        return false;
+    }
 
 }
 

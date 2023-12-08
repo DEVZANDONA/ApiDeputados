@@ -49,6 +49,7 @@ public class HomePage extends AppCompatActivity {
 
         fetchData();
 
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -7,10 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 import com.tcc.trab_final.Auth.Auth.API.ApiService;
 import com.tcc.trab_final.Auth.Auth.API.RetrofitClient;
+import com.tcc.trab_final.Auth.Auth.Auth.LoginActivity;
 import com.tcc.trab_final.Auth.Auth.Models.Partido;
 import com.tcc.trab_final.Auth.Auth.Models.Status;
 import com.tcc.trab_final.R;
@@ -27,6 +32,7 @@ public class ProfilePartido extends AppCompatActivity {
 
     private TextView situacaoTextView, numerosMembrosTextView, numeroLegislaturaTextView, totalPossesTextView, nomeLiderTextView,siglaLiderTextView;
     private ImageView detailImageView;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,14 @@ public class ProfilePartido extends AppCompatActivity {
         int partidoId = getIntent().getIntExtra("PARTIDO_ID", 0);
 
         fetchPartidoDetails(partidoId);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return handleNavigationItemSelected(item);
+            }
+        });
     }
 
     private void fetchPartidoDetails(int partidoId) {
@@ -139,6 +153,24 @@ public class ProfilePartido extends AppCompatActivity {
 
     }
 
+    private boolean handleNavigationItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.sair) {
+            startActivity(new Intent(this, LoginActivity.class));
+            return true;
+        } else if (itemId == R.id.deputados) {
+            startActivity(new Intent(this, DeputadoList.class));
+            return true;
+        } else if (itemId == R.id.config) {
+            startActivity(new Intent(this, ConfigPage.class));
+            return true;
+        } else if (itemId == R.id.partidos) {
+            startActivity(new Intent(this, HomePage.class));
+        }
+
+        return false;
+    }
 
 }
 
