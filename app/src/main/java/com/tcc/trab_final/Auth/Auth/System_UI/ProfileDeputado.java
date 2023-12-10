@@ -49,7 +49,7 @@ public class ProfileDeputado extends AppCompatActivity {
         // Inicializar elementos de UI
         nomeDeputadoTextView = findViewById(R.id.nomeDeputado);
         partidoTextView = findViewById(R.id.partido);
-        emailTextView = findViewById(R.id.email);
+        emailTextView = findViewById(R.id.nome);
         cpfTextView = findViewById(R.id.cpf);
         dataNascimentoTextView = findViewById(R.id.dataNascimento);
         condicaoEleitoralTextView = findViewById(R.id.condicaoEleitoral);
@@ -80,20 +80,17 @@ public class ProfileDeputado extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     try {
                         String responseData = response.body().string();
-                        // Processar os dados JSON e preencher os elementos de UI
                         preencherDetalhesDeputado(responseData);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else {
-                    // Lidar com erro na resposta
                     handleApiError(response);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-                // Lidar com erro de conexão
                 handleConnectionError(t);
             }
         });
@@ -114,13 +111,11 @@ public class ProfileDeputado extends AppCompatActivity {
             String condicaoEleitoral = ultimoStatus.getString("condicaoEleitoral");
             String urlFoto = ultimoStatus.getString("urlFoto");
 
-            // Formatar a data de nascimento
             SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat formatoDesejado = new SimpleDateFormat("dd/MM/yyyy");
             Date dataNascimento = formatoOriginal.parse(dataNascimentoString);
             String dataNascimentoFormatada = formatoDesejado.format(dataNascimento);
 
-            // Preencher os elementos de UI com os dados do deputado
             nomeDeputadoTextView.setText(nome);
             partidoTextView.setText("Partido: " + siglaPartido);
             emailTextView.setText(email);
@@ -128,7 +123,6 @@ public class ProfileDeputado extends AppCompatActivity {
             dataNascimentoTextView.setText(dataNascimentoFormatada);
             condicaoEleitoralTextView.setText(condicaoEleitoral);
 
-            // Carregar imagem usando Picasso
             Picasso.get().load(urlFoto).into(imagemDeputado);
 
         } catch (JSONException | ParseException e) {
@@ -139,13 +133,11 @@ public class ProfileDeputado extends AppCompatActivity {
     private void handleApiError(Response<?> response) {
         // Lidar com erro na resposta da API
         Log.e("API", "Código de erro: " + response.code());
-        // ... lidar com outros detalhes do erro
     }
 
     private void handleConnectionError(Throwable t) {
-        // Lidar com erro de conexão
         Log.e("API", "Erro de conexão", t);
-        // ... lidar com outros detalhes do erro
+
     }
     private boolean handleNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
