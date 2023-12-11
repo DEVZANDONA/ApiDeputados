@@ -57,7 +57,7 @@
             app:layout_constraintTop_toTopOf="@+id/containerComponents" />
 
         <EditText
-            android:id="@+id/senha"
+            android:id="@+id/emailUser"
             style="@style/Edit_Text"
             android:maxLines="1"
             android:inputType="numberPassword"
@@ -76,7 +76,7 @@
             android:contentDescription="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/senha" />
+            app:layout_constraintTop_toBottomOf="@id/emailUser" />
 
         <ProgressBar
             android:id="@+id/progressbar"

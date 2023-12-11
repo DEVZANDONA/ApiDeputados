@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
 
         editEmail = findViewById(R.id.edit_email);
-        editSenha = findViewById(R.id.senha);
+        editSenha = findViewById(R.id.emailUser);
         btnEntrar = findViewById(R.id.Button_Entrar);
         btnCadastro = findViewById(R.id.login_cadastro);
         progressBar = findViewById(R.id.progressbar);

@@ -3,7 +3,6 @@ package com.tcc.trab_final.Auth.Auth.System_UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -12,10 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.tcc.trab_final.Auth.Auth.API.ApiResult;
 import com.tcc.trab_final.Auth.Auth.API.ApiService;
 import com.tcc.trab_final.Auth.Auth.API.RetrofitClient;
 import com.tcc.trab_final.Auth.Auth.Adapters.PartidoAdapter;
+import com.tcc.trab_final.Auth.Auth.Auth.LoginActivity;
 import com.tcc.trab_final.Auth.Auth.Models.Partido;
 import com.tcc.trab_final.R;
 
@@ -53,7 +52,7 @@ public class HomePage extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return handleNavigationItemSelected(item);
+                return itemSelecionadoNavegacao(item);
             }
         });
     }
@@ -147,20 +146,21 @@ public class HomePage extends AppCompatActivity {
 
 
 
-    private boolean handleNavigationItemSelected(MenuItem item) {
+    private boolean itemSelecionadoNavegacao(MenuItem item) {
         int itemId = item.getItemId();
 
         if (itemId == R.id.sair) {
-            // Lógica quando o item "Sair" for selecionado
+            startActivity(new Intent(this, LoginActivity.class));
             return true;
         } else if (itemId == R.id.deputados) {
             startActivity(new Intent(this, DeputadoList.class));
             return true;
         } else if (itemId == R.id.config) {
-            // Lógica quando o item "Configurações" for selecionado
+            startActivity(new Intent(this, ConfigPage.class));
             return true;
+        } else if (itemId == R.id.partidos) {
+            startActivity(new Intent(this, HomePage.class));
         }
-
         return false;
     }
 }

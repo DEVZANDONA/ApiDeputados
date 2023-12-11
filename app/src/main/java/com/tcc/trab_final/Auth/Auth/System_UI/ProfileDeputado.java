@@ -46,26 +46,23 @@ public class ProfileDeputado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_deputado);
 
-        // Inicializar elementos de UI
         nomeDeputadoTextView = findViewById(R.id.nomeDeputado);
         partidoTextView = findViewById(R.id.partido);
-        emailTextView = findViewById(R.id.nome);
+        emailTextView = findViewById(R.id.nomeUser);
         cpfTextView = findViewById(R.id.cpf);
         dataNascimentoTextView = findViewById(R.id.dataNascimento);
         condicaoEleitoralTextView = findViewById(R.id.condicaoEleitoral);
         imagemDeputado = findViewById(R.id.imagemDeputado);
 
-        // Obter ID do deputado da Intent
         int deputadoId = getIntent().getIntExtra("DEPUTADO_ID", 0);
 
-        // Fazer a chamada para obter detalhes do deputado
         obterDetalhesDeputado(deputadoId);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return handleNavigationItemSelected(item);
+                return itemSelecionadoNavegacao(item);
             }
         });
     }
@@ -131,7 +128,6 @@ public class ProfileDeputado extends AppCompatActivity {
     }
 
     private void handleApiError(Response<?> response) {
-        // Lidar com erro na resposta da API
         Log.e("API", "Código de erro: " + response.code());
     }
 
@@ -139,7 +135,7 @@ public class ProfileDeputado extends AppCompatActivity {
         Log.e("API", "Erro de conexão", t);
 
     }
-    private boolean handleNavigationItemSelected(MenuItem item) {
+    private boolean itemSelecionadoNavegacao(MenuItem item) {
         int itemId = item.getItemId();
 
         if (itemId == R.id.sair) {

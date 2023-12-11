@@ -19,4 +19,6 @@
         android:id="@+id/config"
         android:title="Configurações"
         android:icon="@drawable/ic_config"/>
+
+    
 </menu>

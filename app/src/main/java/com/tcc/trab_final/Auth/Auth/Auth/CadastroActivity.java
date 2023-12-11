@@ -1,5 +1,6 @@
 package com.tcc.trab_final.Auth.Auth.Auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -58,8 +59,8 @@ public class CadastroActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(CadastroActivity.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
-
-                            createUserDataInFirestore(nome);
+                            criarUsuarioFirebase(nome);
+                            redirecionarParaLogin();
                         } else {
                             Toast.makeText(CadastroActivity.this, "Falha no cadastro: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -67,11 +68,10 @@ public class CadastroActivity extends AppCompatActivity {
                 });
     }
 
-    private void createUserDataInFirestore(final String nome) {
+    private void criarUsuarioFirebase(final String nome) {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
-
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             Map<String, Object> userData = new HashMap<>();
@@ -83,13 +83,17 @@ public class CadastroActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(CadastroActivity.this, "Dados do usuário criados no Firestore com sucesso!", Toast.LENGTH_SHORT).show();
-                            } else {
+                            if (!task.isSuccessful()) {
                                 Toast.makeText(CadastroActivity.this, "Erro ao criar dados do usuário no Firestore", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
+    }
+
+    private void redirecionarParaLogin() {
+        Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

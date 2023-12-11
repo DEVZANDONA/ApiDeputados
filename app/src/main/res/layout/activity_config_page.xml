@@ -41,7 +41,7 @@
             app:layout_constraintTop_toBottomOf="@id/configName" />
 
         <TextView
-            android:id="@+id/nome"
+            android:id="@+id/nomeUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@id/info" />
 
         <TextView
-            android:id="@+id/senha"
+            android:id="@+id/emailUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
@@ -64,7 +64,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/imagem"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nome" />
+            app:layout_constraintTop_toBottomOf="@id/nomeUser" />
 
         <ImageView
 
@@ -90,7 +90,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:id="@+id/clothingCard"
+                android:id="@+id/cardDelete"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 app:cardElevation="20dp"
@@ -125,6 +125,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:id="@+id/cardModificarNome"
                 app:cardElevation="20dp"
                 app:cardCornerRadius="20dp">
                 <RelativeLayout
@@ -168,6 +169,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:id="@+id/cardModificarSenha"
                 android:layout_weight="1"
                 app:cardElevation="20dp"
                 app:cardCornerRadius="20dp">
@@ -200,6 +202,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
+                android:id="@+id/cardModificarEmail"
                 android:layout_weight="1"
                 app:cardElevation="20dp"
                 app:cardCornerRadius="20dp">
@@ -246,7 +249,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="8dp"
                 android:layout_weight="1" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -254,7 +257,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:backgroundTint="@color/white"
+                android:background="@drawable/menu_background"
                 android:src="@drawable/loading"
                 app:maxImageSize="40dp"
                 app:tint="@color/lavender" />
@@ -265,7 +268,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/white"
+                android:background="@drawable/menu_background"
                 app:fabCradleMargin="10dp"
                 app:fabCradleRoundedCornerRadius="50dp"
                 tools:ignore="BottomAppBar">

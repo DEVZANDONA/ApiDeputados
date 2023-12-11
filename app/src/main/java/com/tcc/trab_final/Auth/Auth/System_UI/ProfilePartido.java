@@ -3,7 +3,6 @@ package com.tcc.trab_final.Auth.Auth.System_UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,7 +54,7 @@ public class ProfilePartido extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return handleNavigationItemSelected(item);
+                return itemSelecionadoNavegacao(item);
             }
         });
     }
@@ -153,7 +152,7 @@ public class ProfilePartido extends AppCompatActivity {
 
     }
 
-    private boolean handleNavigationItemSelected(MenuItem item) {
+    private boolean itemSelecionadoNavegacao(MenuItem item) {
         int itemId = item.getItemId();
 
         if (itemId == R.id.sair) {

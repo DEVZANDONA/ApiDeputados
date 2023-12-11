@@ -3,9 +3,7 @@ package com.tcc.trab_final.Auth.Auth.System_UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.tcc.trab_final.Auth.Auth.API.ApiResult;
 import com.tcc.trab_final.Auth.Auth.API.ApiService;
 import com.tcc.trab_final.Auth.Auth.API.RetrofitClient;
 import com.tcc.trab_final.Auth.Auth.Adapters.DeputadoAdapter;
@@ -55,7 +52,7 @@ public class DeputadoList extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return handleNavigationItemSelected(item);
+                return itemSelecionadoNavegacao(item);
             }
         });
     }
@@ -102,7 +99,6 @@ public class DeputadoList extends AppCompatActivity {
             for (int i = 0; i < dadosArray.length(); i++) {
                 JSONObject deputadoJson = dadosArray.getJSONObject(i);
 
-                // Extrair dados do deputado
                 int id = deputadoJson.getInt("id");
                 String uri = deputadoJson.getString("uri");
                 String nome = deputadoJson.getString("nome");
@@ -113,13 +109,11 @@ public class DeputadoList extends AppCompatActivity {
                 String urlFoto = deputadoJson.getString("urlFoto");
                 String email = deputadoJson.getString("email");
 
-                // Criar objeto Deputado e adicioná-lo à lista
                 Deputado deputado = new Deputado(id, uri, nome, siglaPartido, uriPartido, siglaUf, idLegislatura, urlFoto, email);
                 deputados.add(deputado);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            // Lidar com erros de parsing JSON
         }
 
         return deputados;
@@ -154,20 +148,22 @@ public class DeputadoList extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // Toast removido
+
     }
 
     private void handleConnectionError(Throwable t) {
         Log.e("API", "Erro de conexão", t);
-        // Toast removido
     }
 
 
-    private boolean handleNavigationItemSelected(MenuItem item) {
+    private boolean itemSelecionadoNavegacao(MenuItem item) {
         int itemId = item.getItemId();
 
         if (itemId == R.id.sair) {
             startActivity(new Intent(this, LoginActivity.class));
+            return true;
+        } else if (itemId == R.id.deputados) {
+            startActivity(new Intent(this, DeputadoList.class));
             return true;
         } else if (itemId == R.id.config) {
             startActivity(new Intent(this, ConfigPage.class));
@@ -175,7 +171,6 @@ public class DeputadoList extends AppCompatActivity {
         } else if (itemId == R.id.partidos) {
             startActivity(new Intent(this, HomePage.class));
         }
-
         return false;
     }
 
